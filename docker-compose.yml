@@ -6,8 +6,6 @@ services:
     volumes:
       - /opt/adguard/work:/opt/adguardhome/work
       - /opt/adguard/conf:/opt/adguardhome/conf
-    ports:
-      - "${AG_PORT}:3000/tcp"
     restart: unless-stopped
     networks:
       wg-net:
