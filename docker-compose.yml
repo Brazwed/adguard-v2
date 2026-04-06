@@ -1,0 +1,23 @@
+services:
+  adguard:
+    image: adguard/adguardhome
+    container_name: adguard
+    env_file: .env
+    volumes:
+      - /opt/adguard/work:/opt/adguardhome/work
+      - /opt/adguard/conf:/opt/adguardhome/conf
+    ports:
+      - "${AG_PORT}:3000/tcp"
+    restart: unless-stopped
+    networks:
+      wg-net:
+        ipv4_address: 10.8.1.3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  wg-net:
+    external: true
